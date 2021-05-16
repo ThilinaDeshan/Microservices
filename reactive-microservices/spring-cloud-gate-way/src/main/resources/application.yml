@@ -9,6 +9,10 @@ spring:
     gateway:
       metrics:
         enable: true
+      discovery:
+        locator:
+          lower-case-service-id: true
+          enable: true
 # enable all end points in actuator
 # visit http://localhost:9999/actuator by commenting and un commenting the below config to see the difference
 management:
@@ -18,6 +22,9 @@ management:
         include:  "*"
     gateway:
       enable: true
-
+# enable prefer ip address in local server
+#eureka:
+#  instance:
+#    prefer-ip-address: true
 
 
