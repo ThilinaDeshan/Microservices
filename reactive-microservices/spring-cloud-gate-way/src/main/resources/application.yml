@@ -1,30 +1,28 @@
-server:
-  port: 9999
-# adding a application name will help us to identify the application in Eureka server registry
-spring:
-  application:
-    name: spring-cloud-gateway
-# enable gateway metrics in actuator
-  cloud:
-    gateway:
-      metrics:
-        enable: true
-      discovery:
-        locator:
-          lower-case-service-id: true
-          enable: true
-# enable all end points in actuator
-# visit http://localhost:9999/actuator by commenting and un commenting the below config to see the difference
-management:
-  endpoints:
-    web:
-      exposure:
-        include:  "*"
-    gateway:
-      enable: true
-# enable prefer ip address in local server
-#eureka:
-#  instance:
-#    prefer-ip-address: true
-
-
+#server:
+#  port: 9999
+## adding a application name will help us to identify the application in Eureka server registry
+#spring:
+#  application:
+#    name: spring-cloud-gateway
+## enable gateway metrics in actuator
+#  cloud:
+#    gateway:
+#      metrics:
+#        enable: true
+#      discovery:
+#        locator:
+#          lower-case-service-id: true
+#          enable: true
+## enable all end points in actuator
+## visit http://localhost:9999/actuator by commenting and un commenting the below config to see the difference
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include:  "*"
+#    gateway:
+#      enable: true
+#
+#
+#
+#
