@@ -23,6 +23,13 @@
 #    gateway:
 #      enable: true
 #
-#
-#
-#
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: after_route
+          predicates:
+            - Path=/config-
+#            change the date for future and see the route will be 404
+            - After=2021-01-20T17:42:47.789-07:00[America/Denver]
+          uri: https://spring.io
