@@ -1,0 +1,14 @@
+server:
+  port: 8191
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/ThilinaDeshan/reactive-microservice-config-store
+#          if private git repo
+#          username: hkjhkljh
+#          password: kjlkjlkj
+          search-paths:
+            - '*service'
