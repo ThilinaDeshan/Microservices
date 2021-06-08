@@ -28,6 +28,7 @@ public class CustomerDataStreamConfiguration {
         ).delayElements(Duration.ofSeconds(3));
     }
 
+
     @Bean
     Flux<Customer> customers() {
         // using auto connect this will provide the same stream for each request
