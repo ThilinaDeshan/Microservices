@@ -52,6 +52,12 @@ public class RouteConfiguration {
 								)
 						.uri("https://github.com/@")
 				)
+//				load balancing routes
+				.route(
+						routeSpec->routeSpec
+								.path("/customers/**")
+								.uri("lb://customer-service/")
+				)
                 .build();
     }
 }
