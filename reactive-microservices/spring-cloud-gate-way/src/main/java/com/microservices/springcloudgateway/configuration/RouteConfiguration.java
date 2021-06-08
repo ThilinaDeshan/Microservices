@@ -1,9 +1,14 @@
 package com.microservices.springcloudgateway.configuration;
 
+import org.springframework.cloud.gateway.filter.OrderedGatewayFilter;
+import org.springframework.cloud.gateway.filter.factory.SetPathGatewayFilterFactory;
+import org.springframework.cloud.gateway.route.Route;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 // Spring @Configuration annotation is part of the spring core framework.
 // Spring Configuration annotation indicates that the class has @Bean definition methods.
@@ -60,4 +65,20 @@ public class RouteConfiguration {
 				)
                 .build();
     }
+
+    @Bean
+	RouteLocator customRoute(SetPathGatewayFilterFactory ff){
+		var singleRoute =
+				Route.async()
+						.id("custom-route-01")
+						.filter(new OrderedGatewayFilter(ff.apply(config -> config.setTemplate("/custom")), 1))
+						.uri("lb://customer-service/").asyncPredicate(serverWebExchange -> {
+							var uri = serverWebExchange.getRequest().getURI();
+							var path = uri.getPath();
+							var match = path.contains("/custom");
+							return Mono.just(match);
+						}
+						).build();
+		return () -> Flux.just(singleRoute);
+	}
 }
