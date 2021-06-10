@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+    window.addEventListener('load',()=>{
+    const ws = new WebSocket('ws://localhost:9999/customer-refresh')
+    ws.addEventListener('message',(m)=>{
+        console.log('new Message :' + m.data);
+    })
+    ws.addEventListener('open',()=>ws.send(''));
+    })
+</script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Check console logs for web socket logs</h1>
+</body>
+</html>

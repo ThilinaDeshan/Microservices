@@ -58,11 +58,11 @@ public class RouteConfiguration {
 						.uri("https://github.com/@")
 				)
 //				load balancing routes
-				.route(
-						routeSpec->routeSpec
-								.path("/customers/**")
-								.uri("lb://customer-service/")
-				)
+//				.route(
+//						routeSpec->routeSpec
+//								.path("/customers/**")
+//								.uri("lb://customer-service/")
+//				)
                 .build();
     }
 
@@ -75,7 +75,7 @@ public class RouteConfiguration {
 						.uri("lb://customer-service/").asyncPredicate(serverWebExchange -> {
 							var uri = serverWebExchange.getRequest().getURI();
 							var path = uri.getPath();
-							var match = path.contains("/custom");
+							var match = path.contains("/v1custom");
 							return Mono.just(match);
 						}
 						).build();
